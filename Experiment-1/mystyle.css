@@ -1,0 +1,48 @@
+#div1
+{
+color:blue;
+font-size:20px;
+font-family:arial;
+}
+.class1
+{
+  
+ margin-left:20px;
+}
+#div2
+{
+  font-size:17px;
+ 
+}
+.table
+{
+  padding:5px;
+  width:500px; 
+  background-color:tomato;
+  margin-left:30px;
+  border: 2px solid black;
+}
+
+
+.bgcolor
+{
+    margin-top:20px;
+ background-color:lightgrey;
+}
+.textalign
+{
+  text-align:right;
+}
+.table1
+{
+  padding:5px;
+  width:500px; 
+  background-color:khaki;
+  margin-left:30px;
+  border: 2px solid red;
+}
+body
+{
+  margin:10px;
+  border: 2px solid black;
+}
