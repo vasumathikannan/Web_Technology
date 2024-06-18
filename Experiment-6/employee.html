@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Employee Details Form</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: grey;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 110vh;
+}
+
+.form-container {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    max-width: 400px;
+    width: 100%;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #007bff;
+}
+
+form {
+    margin-top: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    color: #495057;
+}
+
+input[type="text"],
+select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+input[type="radio"] {
+    margin-right: 10px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.button-container button {
+    flex: 1;
+    padding: 12px 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button-container button:nth-child(1) {
+    background-color: #28a745;
+    margin-right: 10px;
+}
+
+.button-container button:nth-child(2) {
+    background-color: #dc3545;
+    margin-right: 10px;
+}
+
+.button-container button:nth-child(3) {
+    background-color: #007bff;
+    margin-right: 10px;
+}
+
+.button-container button:nth-child(4) {
+    background-color: #6c757d;
+}
+
+.button-container button:hover {
+    background-color: #17a2b8;
+}
+</style>
+</head>
+<body>
+
+<div class="form-container">
+    <h1>Employee Details</h1>
+    <form id="form" method="get">
+        <label for="username">Employee Name:</label>
+        <input type="text" id="username" name="username" required>
+       
+        <label for="id">Employee ID:</label>
+        <input type="text" id="id" name="id" required>
+       
+        <label for="branch">Branch:</label>
+        <select id="branch" name="branch" required>
+            <option value="select">Select any one Branch</option>
+            <option value="Headquarters">Headquarters</option>
+            <option value="Development">Development</option>
+            <option value="Quality Assurance">Quality Assurance</option>
+            <option value="Customer Support">Customer Support</option>
+            <option value="Sales">Sales</option>
+        </select>
+       
+        <label>Gender:</label>
+        <div>
+            <input type="radio" id="male" name="gender" value="Male" required>
+            <label for="male">Male</label>
+            <input type="radio" id="female" name="gender" value="Female" required>
+            <label for="female">Female</label>
+        </div>
+
+        <label for="phno">Mobile Number:</label>
+        <input type="text" id="phno" name="phno" required>
+       
+        <label for="branchadd">Branch Address:</label>
+        <input type="text" id="branchadd" name="branchadd" required>
+       
+        <div class="button-container">
+            <button type="submit" onclick="set('/insert', event)">Insert</button>
+            <button type="submit" onclick="set('/delete', event)">Delete</button>
+            <button type="submit" onclick="set('/update', event)">Update</button>
+            <button type="submit" onclick="set('/display', event)">Report</button>
+        </div>
+    </form>
+</div>
+
+<script>
+function set(path, event) {
+    event.preventDefault(); // Prevent default form submission behavior
+    document.getElementById('form').action = 'http://localhost:7050' + path;
+    document.getElementById('form').submit(); // Submit the form after setting the action
+}
+</script>
+
+</body>
+</html>
