@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REGISTRATION FORM VALIDATION</title>
+    <style>
+        .container {
+            border: 2px solid black;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: grey;
+            max-width:600px;
+          
+        }
+        .form-group {
+            padding: 10px;
+        }
+        .error-message {
+            color: red;
+            font-size: 12px;
+            margin-bottom:10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><center>REGISTRATION FORM </center></h1>
+        <div class="form-group">
+            <label for="ROLLNO">ROLLNO</label><br>
+            <input type="text" id="ROLLNO" name="ROLLNO" required onblur="validateRollNo()">
+            <div id="rollnoError" class="error-message"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="NAME">NAME</label><br>
+            <input type="text" id="NAME" name="NAME" required onblur="validateName()">
+            <div id="NameError" class="error-message"></div>
+        </div>
+
+         <div class="form-group">
+            <label>GENDER</label><br>
+            <input type="radio" name="GENDER" id="male_radio" value="male" required onblur="validateGender()">MALE
+            <input type="radio" name="GENDER" id="female_radio" value="female" onblur="validateGender()">FEMALE
+            <div id="genderError" class="error-message"></div>
+        </div>
+        <div class="form-group">
+            <label>PROGRAMMING LANGUAGES</label><br>
+            <input type="checkbox" name="LANGUAGEKNOWN" id="c_checkbox" value="C" onblur="validateLanguagesKnown()">C
+            <input type="checkbox" name="LANGUAGEKNOWN" id="c++_checkbox" value="C++" onblur="validateLanguagesKnown()">C++
+            <input type="checkbox" name="LANGUAGEKNOWN" id="java_checkbox" value="JAVA" onblur="validateLanguagesKnown()">JAVA
+            <input type="checkbox" name="LANGUAGEKNOWN" id="python_checkbox" value="PYTHON" onblur="validateLanguagesKnown()">PYTHON
+
+            <div id="languageError" class="error-message"></div>
+        </div>
+        <div class="form-group">
+            <label for="AREA OF INTEREST">AREA OF INTEREST</label><br>
+            <select id="AREA OF INTEREST" name="AREA OF INTEREST" required onblur="validateAreaofinterest()">
+                <option value="">select type</option>
+                <option value="Web Development">Web Development</option>
+                <option value="Data Science and Machine Learning">Data Science and Machine Learning</option>
+                <option value="Cybersecurity">Cybersecurity</option>
+                <option value="DevOps">Devops</option>
+                <option value="Cloud Computing">Cloud Computing</option>
+            </select>
+            <div id="areaError" class="error-message"></div>
+        </div>
+               <div class="form-group">
+            <label for="EMAIL">EMAIL</label><br>
+            <input type="email" id="EMAIL" name="EMAIL" required onblur="validateEmail()">
+            <div id="emailError" class="error-message"></div>
+        </div>
+        <div class="form-group">
+            <label for="MOBILE_NUMBER">MOBILE NUMBER</label><br>
+            <input type="text" id="MOBILE_NUMBER" name="MOBILE_NUMBER" required onblur="validateMobileNumber()">
+            <div id="mobileError" class="error-message"></div>
+        </div>
+         <div class="form-group">
+            <label for="PASSWORD">PASSWORD</label><br>
+            <input type="password" id="PASSWORD" name="PASSWORD" required onblur="validatePassword()">
+            <div id="passwordError" class="error-message"></div>
+        </div>
+        <div class="form-group">
+            <label for="CONFIRM_PASSWORD">CONFIRM PASSWORD</label><br>
+            <input type="password" id="CONFIRM_PASSWORD" name="CONFIRM_PASSWORD" required onblur="validateConfirmPassword()">
+            <div id="confirmPasswordError" class="error-message"></div>
+        </div>
+        
+        <div class="form-group">
+            <input type="submit" value="SUBMIT" onclick="return validateForm()">
+        </div>
+    </div>
+
+    <script>
+        function validateRollNo() {
+    var rollno = document.getElementById("ROLLNO").value;
+        if (!/^(\d{2}[A-Za-z]{3}\d{3})$/.test(rollno)) {
+       document.getElementById("rollnoError").innerHTML = "Please enter a valid Roll No. (Format: 2 digit, 3 letters, 3 digits)";
+    } else {
+        document.getElementById("rollnoError").innerHTML = "";
+    }
+}
+
+       function validateName() {
+            var Name = document.getElementById("NAME").value;
+            if (!/^[a-zA-Z_]+$/.test(Name)) {
+                document.getElementById("NameError").innerHTML = "Name should only contain alphabets and underscore.";
+            } else {
+                document.getElementById("NameError").innerHTML = "";
+            }
+        }
+
+        
+        function validateGender() {
+            var genderMale = document.getElementById("male_radio").checked;
+            var genderFemale = document.getElementById("female_radio").checked;
+            if (!genderMale && !genderFemale) {
+                document.getElementById("genderError").innerHTML = "Please select a gender.";
+            } else {
+                document.getElementById("genderError").innerHTML = "";
+            }
+        }
+
+        function validateLanguagesKnown() {
+            var languagesKnown = document.querySelectorAll('input[name="LANGUAGEKNOWN"]:checked').length;
+            if (languagesKnown === 0) {
+                document.getElementById("languageError").innerHTML = "Please select at least one language.";
+            } else {
+                document.getElementById("languageError").innerHTML = "";
+            }
+        }
+
+        function validateAreaofinterest() {
+            var area = document.getElementById("AREA OF INTEREST").value;
+            if (area === "") {
+                document.getElementById("areaError").innerHTML = "Please select a area of interest.";
+            } else {
+                document.getElementById("areaError").innerHTML = "";
+            }
+        }
+
+        function validateEmail() {
+            var email = document.getElementById("EMAIL").value;
+            if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+                document.getElementById("emailError").innerHTML = "Invalid email address.";
+            } else {
+                document.getElementById("emailError").innerHTML = "";
+            }
+        }
+
+        function validateMobileNumber() {
+            var mobileNumber = document.getElementById("MOBILE_NUMBER").value;
+            if (!/^\d{10}$/.test(mobileNumber)) {
+                document.getElementById("mobileError").innerHTML = "Mobile number must be 10 digits long.";
+            } else {
+                document.getElementById("mobileError").innerHTML = "";
+            }
+        }
+
+        function validatePassword() {
+            var password = document.getElementById("PASSWORD").value;
+            if (!/^[a-zA-Z][a-zA-Z0-9*@/]{7,}$/.test(password)) {
+                document.getElementById("passwordError").innerHTML = "Password should start with alphabets and contain alphanumeric and special characters * @ /.";
+            } else {
+                document.getElementById("passwordError").innerHTML = "";
+            }
+        }
+
+        function validateConfirmPassword() {
+            var password = document.getElementById("PASSWORD").value;
+            var confirmPassword = document.getElementById("CONFIRM_PASSWORD").value;
+            if (password !== confirmPassword) {
+                document.getElementById("confirmPasswordError").innerHTML = "Passwords do not match.";
+            } else {
+                document.getElementById("confirmPasswordError").innerHTML = "";
+            }
+        }
+       document.getElementById("rollno").addEventListener("blur", validateRollNo);
+
+        document.getElementById("NAME").addEventListener("blur", validateName);
+        
+        document.getElementById("male_radio").addEventListener("blur", validateGender);
+        document.getElementById("female_radio").addEventListener("blur", validateGender);
+        document.getElementById("c_checkbox").addEventListener("blur", validateLanguagesKnown);
+        document.getElementById("c++_checkbox").addEventListener("blur", validateLanguagesKnown);
+        document.getElementById("java_checkbox").addEventListener("blur", validateLanguagesKnown);
+         document.getElementById("python_checkbox").addEventListener("blur", validateLanguagesKnown);
+
+        document.getElementById("AREA OF INTEREST").addEventListener("blur", validateAreaofinterest);
+       
+        document.getElementById("EMAIL").addEventListener("blur", validateEmail);
+        document.getElementById("MOBILE_NUMBER").addEventListener("blur", validateMobileNumber);
+       
+        document.getElementById("PASSWORD").addEventListener("blur", validatePassword);
+        document.getElementById("CONFIRM_PASSWORD").addEventListener("blur", validateConfirmPassword);
+
+   function validateForm() {
+    validateRollNo();
+    validateName();
+    validateGender();
+    validateLanguagesKnown();
+    validateAreaofinterest();
+    validateEmail();
+    validateMobileNumber();
+    validatePassword();
+    validateConfirmPassword();
+
+    var rollnoError = document.getElementById("rollnoError").innerHTML;
+    var NameError = document.getElementById("NameError").innerHTML;
+    var genderError = document.getElementById("genderError").innerHTML;
+    var languageError = document.getElementById("languageError").innerHTML;
+    var areaError = document.getElementById("areaError").innerHTML;
+    var emailError = document.getElementById("emailError").innerHTML;
+    var mobileError = document.getElementById("mobileError").innerHTML;
+    var passwordError = document.getElementById("passwordError").innerHTML;
+    var confirmPasswordError = document.getElementById("confirmPasswordError").innerHTML;
+
+    if (
+        rollnoError === "" &&
+        NameError === "" &&
+        genderError === "" &&
+        languageError === "" &&
+        areaError === "" &&
+        emailError === "" &&
+        mobileError === "" &&
+        passwordError === "" &&
+        confirmPasswordError === ""
+    ) {
+        // Form submission successful, redirect to thank1.html
+        window.location.href = "thank1.html";
+        return true;
+    } }
+       
+  </script>
+</body>
+</html>
