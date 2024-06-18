@@ -1,0 +1,60 @@
+<!-- src/app/product-list/product-list.component.html -->
+<h2><b><u>ELECTRONIC GADGETS</u></b></h2> 
+<div class="product-list">
+  <div class="product-card">
+    <h2><b>AIRPODS</b></h2>
+    <img src="./assets/image/airpods.jpg" alt="Product 1" class="product-image" />
+    <br>
+    <p>Experience crystal-clear sound and all-day comfort with our premium over-ear headset, featuring noise-canceling technology and a built-in mic for seamless communication. Perfect for work, gaming, and entertainment. </p>
+    <p><b>Rs.1999</b></p>
+    <button (click)="addToCart({id: 1, name: 'AIRPODS', price:1999, description: 'Description for Product 1', imageUrl: 'assets/images/headset.webp'})">Add to Cart</button>
+  </div>
+  <div class="product-card">
+    <h2><b>PENDRIVE</b></h2>
+    <img src="./assets/image/pendrive.webp" alt="Product 9" class="product-image" />
+    <p>Keep your data secure and easily accessible with our sleek and compact pen drive. Featuring high-speed data transfer, it ensures quick access to all your important files and media. With its durable build, it withstands daily wear and tear, making it a reliable choice for on-the-go storage.Carry your digital world in your pocket with our sleek and compact pendrive.</p>
+    <p><b>Rs.1700</b></p>
+    <button (click)="addToCart({id: 9, name: 'PEN DRIVE', price: 1700, description: 'Description for Product 9', imageUrl: 'https://via.placeholder.com/150'})">Add to Cart</button>
+  </div>
+  <div class="product-card">
+    <h2><b>SPEAKER</b></h2>
+    <img src="./assets/image/speaker.jpeg" alt="Product 5" class="product-image" />
+    <br>
+    <p> Immerse yourself in rich, powerful sound with our high-fidelity speakers, designed for optimal audio performance. Perfect for home entertainment and music lovers, featuring easy connectivity and sleek, modern design.</p>
+    <p><b>Rs.5999</b></p>
+    <button (click)="addToCart({id: 5, name: 'SPEAKER', price: 5999, description: 'Description for Product 5', imageUrl: 'https://via.placeholder.com/150'})">Add to Cart</button>
+  </div>
+  <div class="product-card">
+    <h2><b>SCREEN MAGNIFIER</b></h2>
+    <img src="./assets/image/screen.jpeg" alt="Product 4" class="product-image" />
+    <br><br>
+    <p>Enhance your viewing experience with our portable screen magnifier, providing a clear, enlarged display for your smartphone. Perfect for on-the-go entertainment and comfortable browsing.Enhance your smartphone viewing experience with our portable screen magnifier.
+ </p>
+    <p><b>Rs.700</b></p>
+    <button (click)="addToCart({id: 4, name: 'SCREEN MAGNIFIER', price: 700, description: 'Description for Product 4', imageUrl: 'https://s.alicdn.com/@sc04/kf/Hd521db5e65a74fbd90100ff61e1c5f840.jpg_720x720q50.jpg'})">Add to Cart</button>
+  </div>
+  
+  <div class="product-card">
+    <br>
+    <h2><b>SMART WATCH</b></h2>
+    <img src="./assets/image/watch.avif" alt="Product 3" class="product-image" />
+    <br><br>
+    <p>Elevate your style with our sleek, modern watch, combining precision timekeeping with elegant design. </p>
+    <p><b>Rs.1500</b></p>
+    <button (click)="addToCart({id: 3, name: 'SMART WATCH', price: 1500, description: 'Description for Product 3', imageUrl: 'https://digital-devices.weebly.com/uploads/2/7/1/1/27118291/8780046_orig.jpg'})">Add to Cart</button>
+  </div>
+  <div class="product-card">
+    <h2><b>DRAWING TABLET</b></h2>
+    <img src="./assets/image/tab.jpeg" alt="Product 6" class="product-image" />
+    <p>Unleash your creativity with our high-resolution drawing tablet, offering a responsive and precise pen for a natural drawing experience.Unleash creativity with precision using our high-resolution  tablet.</p>
+    <p><b>Rs.10000</b></p>
+    <button (click)="addToCart({id: 6, name: 'TABLET', price: 10000, description: 'Description for Product 6', imageUrl: 'https://via.placeholder.com/150'})">Add to Cart</button>
+  </div>
+  <div class="product-card">
+    <h2><b>POWER BANK</b></h2>
+    <img src="./assets/image/bank.jpeg" alt="Product 7" class="product-image" />
+    <p>Stay powered on the go with our compact and high-capacity power bank, designed to charge your devices quickly and efficiently. Featuring multiple USB ports and a sleek design, it's perfect for travel and everyday use.</p>
+    <p><b>Rs.2,814</b></p>
+    <button (click)="addToCart({id: 7, name: 'POWER BANK', price: 2814, description: 'Description for Product 7', imageUrl: 'https://via.placeholder.com/150'})">Add to Cart</button>
+  </div>
+</div>
