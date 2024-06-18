@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Electricity Bill Calculator</title>
+<style>
+  
+body
+{
+   background-image:url('bill.jpeg'); 
+   background-size:cover;
+}
+
+    #ebBillForm {
+        width: 300px;
+        margin: 50px auto ;
+    }
+    input[type="text"],
+    input[type="number"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        background-color:green;
+        color: white;
+        border-color: black;
+        
+    }
+    input[type="submit"]:hover {
+        background-color: green;
+    }
+    #billTable {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 20px;
+    }
+    #billTable th, #billTable td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    #billTable th {
+        background-color: green;
+        color: white;
+    }
+</style>
+</head>
+<body>
+<h1><center><b>EB BILL CALCULATOR</center></b></h1>
+<img src="bill1.jpeg" width="150" height="150" align="right"/>
+
+<form id="ebBillForm">
+    <label for="consumerName">Consumer Name:</label>
+    <input type="text" id="consumerName" name="consumerName" required>
+
+    <label for="previousMonthUnits">Previous Month Units:</label>
+    <input type="number" id="previousMonthUnits" name="previousMonthUnits" required>
+
+    <label for="currentMonthUnits">Current Month Units:</label>
+    <input type="number" id="currentMonthUnits" name="currentMonthUnits" required>
+
+    <input type="submit" value="Calculate Bill">
+</form>
+
+<div id="billTableContainer"></div>
+
+<script>
+document.getElementById('ebBillForm').addEventListener('submit', function(e) {
+    e.preventDefault(); 
+
+    var consumerName = document.getElementById('consumerName').value;
+    var previousMonthUnits = parseFloat(document.getElementById('previousMonthUnits').value);
+    var currentMonthUnits = parseFloat(document.getElementById('currentMonthUnits').value);
+    var totalBill = calculateElectricityBill(previousMonthUnits, currentMonthUnits);
+    displayBillInTable(consumerName, previousMonthUnits, currentMonthUnits, totalBill);
+});
+
+function calculateElectricityBill(previousMonthUnits, currentMonthUnits) 
+{
+    
+    var units = currentMonthUnits - previousMonthUnits;
+    var rate;
+    var bill = 0;
+    units=units-100;
+    if(units <= 100)
+    {
+        
+        bill = units*1.5;
+    }
+    else if(units <= 200)  
+    {
+        rate = 2.5;
+        units=units-100;
+        bill = (100 * 1.5) + (units * rate);
+    }
+    else if(units <= 300) 
+    {
+        rate = 3.5;
+        units=units-200;
+        bill = (100 * 1.5 )+ (100 * 2.5) + (units* rate);
+    }
+    else 
+    {
+        rate = 4.5;
+        units=units-300;
+        bill = (100 * 1.5) + (100 * 2.5 )+ (100 * 3.5 )+ (units* rate);
+    }
+
+    return bill;
+}   
+
+
+function displayBillInTable(consumerName, previousMonthUnits, currentMonthUnits, totalBill) {
+    var table = '<table id="billTable">';
+    table += '<tr><th>Consumer Name</th><th>Previous Month Units</th><th>Current Month Units</th><th>Total Bill</th></tr>';
+    table += '<tr><td>' + consumerName + '</td><td>' + previousMonthUnits + '</td><td>' + currentMonthUnits + '</td><td>' + totalBill.toFixed(2) + '</td></tr>';
+    table += '</table>';
+    document.getElementById('billTableContainer').innerHTML = table;
+}
+</script>
+
+</body>
+</html>
