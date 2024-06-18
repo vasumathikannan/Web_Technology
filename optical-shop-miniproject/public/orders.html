@@ -1,0 +1,165 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orders</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <header class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Optical Shop</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="user-details.html">User Details</a></li>
+                <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.html">Logout</a></li>
+            </ul>
+        </div>
+    </header>
+    <main class="container">
+        <h2 class="text-center mt-4">Your Orders</h2>
+        <div id="ordersList" class="row"></div>
+    </main>
+    <script>
+        window.onload = function() {
+            fetch('/orders')
+                .then(response => response.json())
+                .then(orders => {
+                    const ordersList = document.getElementById('ordersList');
+                    orders.forEach(order => {
+                        const orderElement = document.createElement('div');
+                        orderElement.className = 'col-md-4 mb-4';
+                        orderElement.innerHTML = `
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">${order.productName}</h5>
+                                    <p class="card-text">Price: $${order.price}</p>
+                                    <p class="card-text">Lens Type: ${order.lensType}</p>
+                                    <p class="card-text">Ordered by: ${order.userName}</p>
+                                </div>
+                            </div>
+                        `;
+                        ordersList.appendChild(orderElement);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching orders:', error);
+                });
+        }
+    </script>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orders</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        /* Navbar styles */
+        .navbar {
+            background-color: grey; /* Green background */
+        }
+        .navbar-brand, .nav-link {
+            color: #FFFFFF !important; /* White text color */
+        }
+        /* Card styles for orders */
+        .card {
+            margin: 15px 0;
+            border-radius: 10px;
+            border: 1px solid #ddd; /* Light grey border */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow */
+            transition: box-shadow 0.3s ease-in-out;
+        }
+        .card:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
+        }
+        .card-title {
+            color: #333; /* Dark grey title */
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        .card-text {
+            color: #666; /* Grey text */
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+        .btn-danger {
+            background-color: #dc3545; /* Red button */
+            border-color: #dc3545; /* Red border */
+            color: #fff; /* White text */
+            transition: background-color 0.3s ease-in-out;
+        }
+        .btn-danger:hover {
+            background-color: #c82333; /* Darker red on hover */
+            border-color: #bd2130; /* Darker border on hover */
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const userName = new URLSearchParams(window.location.search).get('name');
+            fetch(`/orders?userName=${userName}`)
+                .then(response => response.json())
+                .then(orders => {
+                    const ordersList = document.getElementById('ordersList');
+                    orders.forEach(order => {
+                        const orderCard = document.createElement('div');
+                        orderCard.classList.add('card', 'mb-3');
+                        orderCard.innerHTML = `
+                            <div class="card-body">
+                                <h5 class="card-title">${order.productName}</h5>
+                                <p class="card-text">Price: $${order.price}</p>
+                                <p class="card-text">Lens Type: ${order.lensType}</p>
+                                <button class="btn btn-danger" onclick="cancelOrder('${order._id}')">Cancel Order</button>
+                            </div>
+                        `;
+                        ordersList.appendChild(orderCard);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching orders:', error);
+                });
+        });
+
+        function cancelOrder(orderId) {
+            if (confirm("Are you sure you want to cancel this order?")) {
+                fetch(`/order/${orderId}`, {
+                    method: 'DELETE'
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert('Order cancelled successfully');
+                    window.location.href = `/orders.html?name=${new URLSearchParams(window.location.search).get('name')}`;
+                })
+                .catch(error => {
+                    console.error('Error cancelling order:', error);
+                    alert('Failed to cancel order. Please try again.');
+                });
+            }
+        }
+    </script>
+</head>
+<body>
+    <header class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">Optical Shop</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <main class="container">
+        <h2 class="text-center mt-4">Orders</h2>
+        <div id="ordersList" class="row">
+            <!-- Orders will be loaded here dynamically -->
+        </div>
+    </main>
+</body>
+</html>

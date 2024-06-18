@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update User Details</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: lightgrey; /* Light grey background */
+            color: #333; /* Dark grey text */
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            margin-top: 50px; /* Adjust top margin for space */
+            max-width: 600px; /* Limit form width */
+            background-color: #fff; /* White background */
+            padding: 30px; /* Padding inside container */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow */
+        }
+        h2 {
+            color: #343a40; /* Dark grey heading */
+            margin-bottom: 30px; /* Space below heading */
+            text-align: center; /* Center align heading */
+        }
+        .form-group label {
+            font-weight: bold; /* Bold labels */
+            color: #343a40; /* Dark grey labels */
+        }
+        .form-control {
+            border-color: #ced4da; /* Light grey border */
+        }
+        .form-control:focus {
+            border-color: #6c757d; /* Dark grey border on focus */
+            box-shadow: none; /* Remove box shadow on focus */
+        }
+        .btn-primary {
+            background-color: blue; /* Dark grey button */
+            border-color: #343a40; /* Dark grey border */
+            width: 100%; /* Full-width button */
+        }
+        .btn-primary:hover {
+            background-color: #6c757d; /* Dark grey hover button */
+            border-color: #6c757d; /* Dark grey hover border */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Update User Details</h2>
+        <form id="updateForm" action="/update-user" method="POST">
+            <div class="form-group">
+                <label for="name">User Name:</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Enter user name">
+            </div>
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <input type="text" class="form-control" id="address" name="address" placeholder="Enter address">
+            </div>
+            <div class="form-group">
+                <label for="mobile">Mobile:</label>
+                <input type="text" class="form-control" id="mobile" name="mobile" placeholder="Enter mobile number">
+            </div>
+            <div class="form-group">
+                <label for="rightEyePower">Right Eye Power:</label>
+                <input type="text" class="form-control" id="rightEyePower" name="rightEyePower" placeholder="Enter right eye power">
+            </div>
+            <div class="form-group">
+                <label for="leftEyePower">Left Eye Power:</label>
+                <input type="text" class="form-control" id="leftEyePower" name="leftEyePower" placeholder="Enter left eye power">
+            </div>
+            <div class="form-group">
+                <label for="lensType">Lens Type:</label>
+                <select class="form-control" id="lensType" name="lensType" required>
+                    <option>Single Vision</option>
+                    <option>Bifocal</option>
+                    <option>Progressive</option>
+                    <option>Multifocal</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Update Details</button>
+        </form>
+    </div>
+</body>
+</html>
